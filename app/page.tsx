@@ -522,7 +522,7 @@ export default function Home() {
             © 2025 Freadam Abebe. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link href="https://github.com/freadam" className="text-muted-foreground hover:text-foreground">
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </Link>
