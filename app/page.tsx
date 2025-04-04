@@ -59,7 +59,7 @@ export default function Home() {
               <div className="flex items-center justify-center">
                 <div className="relative aspect-square overflow-hidden rounded-xl">
                   <Image
-                    src="/Freadam_Abebe.jpg?height=600&width=600"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Freadam_Abebe.jpg?height=600&width=600`}
                     width={600}
                     height={600}
                     alt="Freadam Abebe"
@@ -261,7 +261,7 @@ export default function Home() {
               <Card className="overflow-hidden">
                 <div className="aspect-video w-full overflow-hidden">
                   <Image
-                    src="/dama.jpg?height=400&width=600"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/dama.jpg?height=400&width=600`}
                     width={600}
                     height={400}
                     alt="Dama Negest"
@@ -294,7 +294,7 @@ export default function Home() {
               <Card className="overflow-hidden">
                 <div className="aspect-video w-full overflow-hidden">
                   <Image
-                    src="/arif.png?height=400&width=600"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/arif.png?height=400&width=600`}
                     width={600}
                     height={400}
                     alt="Educational Platform"
@@ -327,7 +327,7 @@ export default function Home() {
               <Card className="overflow-hidden">
                 <div className="aspect-video w-full overflow-hidden">
                   <Image
-                    src="/sefed.png?height=400&width=600"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/sefed.png?height=400&width=600`}
                     width={600}
                     height={400}
                     alt="Sefed EMR"
