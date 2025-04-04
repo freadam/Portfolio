@@ -5,7 +5,16 @@ const nextConfig = {
   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH,
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+    domains: ['github.com'],
+    path: process.env.NEXT_PUBLIC_BASE_PATH || '',
   },
+  trailingSlash: true,
 }
 
 module.exports = nextConfig
