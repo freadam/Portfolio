@@ -57,6 +57,8 @@ const hobbyGames = [
     title: "Busara",
     description: "Experimental AI dialogue system exploring emergent narrative branches.",
     icon: Box,
+    type: "video",
+    src: "/Videos/Busara.mp4",
     link: "https://github.com",
     linkText: ">> View Repo",
   },
@@ -64,6 +66,8 @@ const hobbyGames = [
     title: "Konker",
     description: "48-hour jam project. Local multiplayer arena brawler with rollback netcode.",
     icon: Swords,
+    type: "video",
+    src: "/Videos/Konker.mp4",
     link: "https://github.com",
     linkText: ">> Play WebGL",
   },
@@ -71,6 +75,8 @@ const hobbyGames = [
     title: "Watershed Sim",
     description: "Cellular automata-based terrain erosion and water flow simulation tool.",
     icon: SlidersHorizontal,
+    type: "video",
+    src: "/Videos/WatershedSimulator.mp4",
     link: "https://github.com",
     linkText: ">> View Source",
   },
@@ -78,6 +84,8 @@ const hobbyGames = [
     title: "Solar System",
     description: "N-body gravity simulation rendered entirely using compute shaders.",
     icon: Globe,
+    type: "video",
+    src: "/Videos/SolarSystem.mp4",
     link: "https://github.com",
     linkText: ">> View Demo",
   },
@@ -85,6 +93,8 @@ const hobbyGames = [
     title: "2D Space Shooter",
     description: "My first game. A classic bullet hell built from scratch in C++ and SDL2.",
     icon: Rocket,
+    type: "video",
+    src: "/Videos/2DSpaceShooter.mp4",
     link: "https://github.com",
     linkText: ">> Download",
   },
@@ -166,26 +176,39 @@ function GameCard({ game, className = "" }: { game: typeof professionalGames[0],
 function HobbyCard({ game }: { game: typeof hobbyGames[0] }) {
   const Icon = game.icon
   return (
-    <Card className="flex flex-col justify-between border-none bg-card/50 hover:bg-card transition-colors p-6 group h-full">
-      <div>
+    <Card className="flex flex-col border-none bg-card/50 hover:bg-card transition-colors group h-full overflow-hidden">
+      {game.type === "video" && game.src && (
+         <div className="aspect-video w-full overflow-hidden bg-muted relative border-b border-border/50">
+           <video
+             src={`${basePath}${game.src}`}
+             muted
+             loop
+             playsInline
+             preload="metadata"
+             autoPlay
+             className="w-full h-full object-cover"
+           />
+         </div>
+      )}
+      <div className="p-6 flex flex-col flex-1">
         <div className="flex items-start justify-between mb-4">
           <h3 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">{game.title}</h3>
           <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed mb-6">{game.description}</p>
+        {game.link && (
+          <div className="mt-auto pt-4 flex">
+            <Link
+              href={game.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono font-bold tracking-wider text-primary hover:text-primary/80 transition-colors"
+            >
+              {game.linkText}
+            </Link>
+          </div>
+        )}
       </div>
-      {game.link && (
-        <div className="mt-auto pt-4 flex">
-          <Link
-            href={game.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-mono font-bold tracking-wider text-primary hover:text-primary/80 transition-colors"
-          >
-            {game.linkText}
-          </Link>
-        </div>
-      )}
     </Card>
   )
 }
@@ -198,21 +221,33 @@ export default function Home() {
       <main className="container pb-10">
         {/* Hero Section */}
         <section className="py-16 md:py-24">
-          <div className="max-w-[800px] flex flex-col space-y-6">
-            <div>
-              <span className="inline-flex items-center text-xs font-mono font-bold uppercase tracking-widest text-primary border border-primary/30 bg-primary/10 px-3 py-1 mb-6">
-                <span className="mr-2 inline-block h-2 w-2 bg-primary"></span>
-                System Init
-              </span>
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+            <div className="max-w-[800px] flex flex-col space-y-6 flex-1">
+              <div>
+                <span className="inline-flex items-center text-xs font-mono font-bold uppercase tracking-widest text-primary border border-primary/30 bg-primary/10 px-3 py-1 mb-6">
+                  <span className="mr-2 inline-block h-2 w-2 bg-primary"></span>
+                  System Init
+                </span>
+              </div>
+              
+              <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+                Engineering <span className="text-primary">Digital</span> Realities
+              </h1>
+              
+              <p className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed">
+                High-performance game developer and technical designer. Specializing in systems architecture, core gameplay loops, and pushing pixels to their absolute limit.
+              </p>
             </div>
             
-            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-              Engineering <span className="text-primary">Digital</span> Realities
-            </h1>
-            
-            <p className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed">
-              High-performance game developer and technical designer. Specializing in systems architecture, core gameplay loops, and pushing pixels to their absolute limit.
-            </p>
+            <div className="flex-shrink-0 relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/20 mt-8 md:mt-0">
+              <Image 
+                src={`${basePath}/Freadam_Abebe.jpg`} 
+                alt="Freadam Abebe" 
+                fill 
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </section>
 

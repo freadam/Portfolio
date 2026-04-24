@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { ResumeButton } from "@/components/resume-button"
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +42,9 @@ export function SiteHeader() {
 
         {/* Right: Hire Me Button & Mobile Toggle */}
         <div className="flex items-center gap-4">
+          <div className="hidden md:block">
+            <ResumeButton />
+          </div>
           <Link href="mailto:freadamabebe@gmail.com" className="hidden md:block">
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-mono font-bold rounded-sm h-9 px-6 text-xs tracking-wider">
               Hire Me
@@ -74,11 +78,16 @@ export function SiteHeader() {
           >
             Blog
           </Link>
-          <Link href="mailto:freadamabebe@gmail.com" onClick={() => setIsOpen(false)}>
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono font-bold rounded-sm tracking-wider">
-              Hire Me
-            </Button>
-          </Link>
+          <div className="pt-2 flex flex-col gap-3">
+            <div className="w-full [&>button]:w-full">
+              <ResumeButton />
+            </div>
+            <Link href="mailto:freadamabebe@gmail.com" onClick={() => setIsOpen(false)}>
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono font-bold rounded-sm tracking-wider">
+                Hire Me
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </header>
