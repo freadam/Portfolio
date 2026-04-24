@@ -1,4 +1,4 @@
-import { ArrowRight, Download, ExternalLink, Github, Mail, Phone } from "lucide-react"
+import { ArrowRight, Download, ExternalLink, Github, Mail, Phone, Gamepad2, Dice5 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -8,6 +8,166 @@ import { Badge } from "@/components/ui/badge"
 import { ContactForm } from "@/components/contact-form"
 import { ResumeButton } from "@/components/resume-button"
 import { MainNav } from "@/components/main-nav"
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+const professionalGames = [
+  {
+    title: "Mancala Adventures",
+    description: "Traditional African Mancala reimagined for mobile with multiple game modes, AI opponents, and online multiplayer.",
+    type: "youtube",
+    videoId: "-3J6HCTuZH0",
+    link: "https://play.google.com/store/apps/details?id=com.qenegames.gebeta&hl=en",
+    linkText: "View on Google Play",
+    tags: ["Unity", "Mobile", "Multiplayer"],
+  },
+  {
+    title: "Silet",
+    description: "A traditional Ethiopian strategy game brought to mobile with polished visuals and challenging AI.",
+    type: "video",
+    src: "/Videos/Silet.mp4",
+    tags: ["Unity", "Mobile", "AI"],
+  },
+  {
+    title: "Tras",
+    description: "Classic Ethiopian word game digitized with an intuitive touch interface and multiplayer support.",
+    type: "video",
+    src: "/Videos/Tras.mp4",
+    tags: ["Unity", "Mobile", "Multiplayer"],
+  },
+  {
+    title: "Dama Negest",
+    description: "An Ethiopian checkers variant featuring ranked play, tournaments, and vibrant board themes.",
+    type: "video",
+    src: "/Videos/DamaNegest.mp4",
+    link: "https://kinet.store/games",
+    linkText: "View Games",
+    tags: ["Unity", "Mobile", "Competitive"],
+  },
+  {
+    title: "Weze",
+    description: "A strategic Ethiopian board game with deep tactical gameplay and elegant minimalist design.",
+    type: "video",
+    src: "/Videos/Weze.mp4",
+    tags: ["Unity", "Mobile", "Strategy"],
+  },
+]
+
+const hobbyGames = [
+  {
+    title: "Busara",
+    description: "A puzzle-strategy prototype exploring emergent gameplay through tile-based mechanics.",
+    type: "video",
+    src: "/Videos/Busara.mp4",
+    tags: ["Prototype", "Puzzle"],
+  },
+  {
+    title: "Konker",
+    description: "A Rummy-style card game built in Unity with AI opponents and animated card interactions.",
+    type: "video",
+    src: "/Videos/Konker.mp4",
+    tags: ["Unity", "Cards", "AI"],
+  },
+  {
+    title: "Watershed Simulator",
+    description: "An interactive environmental simulation visualizing water flow across procedural terrain.",
+    type: "video",
+    src: "/Videos/WatershedSimulator.mp4",
+    tags: ["Simulation", "Procedural"],
+  },
+  {
+    title: "Solar System",
+    description: "A 3D orbital mechanics sandbox for exploring planetary motion and gravitational physics.",
+    type: "video",
+    src: "/Videos/SolarSystem.mp4",
+    tags: ["3D", "Physics", "Educational"],
+  },
+  {
+    title: "2D Space Shooter",
+    description: "A fast-paced arcade shooter with wave-based enemies, power-ups, and retro aesthetics.",
+    type: "video",
+    src: "/Videos/2DSpaceShooter.mp4",
+    tags: ["Arcade", "2D", "Action"],
+  },
+]
+
+const boardGames = [
+  {
+    title: "Board Game 1",
+    description: "A strategic tabletop experience currently in development. Details coming soon.",
+  },
+  {
+    title: "Board Game 2",
+    description: "An innovative board game concept exploring new mechanics. Details coming soon.",
+  },
+  {
+    title: "Board Game 3",
+    description: "A cooperative tabletop game designed for social play. Details coming soon.",
+  },
+  {
+    title: "Board Game 4",
+    description: "A competitive strategy board game with deep replayability. Details coming soon.",
+  },
+]
+
+function GameCard({ game }: { game: typeof professionalGames[0] }) {
+  return (
+    <Card className="overflow-hidden group">
+      <div className="aspect-video w-full overflow-hidden bg-muted">
+        {game.type === "youtube" ? (
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${game.videoId}`}
+            title={`${game.title} video`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <video
+            src={`${basePath}${game.src}`}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controls
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Gamepad2 className="h-5 w-5 text-primary/70" />
+          {game.title}
+        </CardTitle>
+        <div className="flex flex-wrap gap-1.5 mt-1">
+          {game.tags?.map((tag) => (
+            <Badge key={tag} variant="secondary" className="text-xs">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground">{game.description}</p>
+        {game.link && (
+          <div className="mt-4">
+            <Link
+              href={game.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-sm text-primary hover:underline"
+            >
+              <ExternalLink className="mr-1 h-4 w-4" />
+              {game.linkText || "View Project"}
+            </Link>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
 
 export default function Home() {
   return (
@@ -34,12 +194,12 @@ export default function Home() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                     Freadam Abebe
                   </h1>
-                  <p className="text-xl text-muted-foreground">Game Developer | Product Manager</p>
+                  <p className="text-xl text-muted-foreground">Game Developer | Game Designer</p>
                 </div>
                 <div className="max-w-[600px] text-muted-foreground md:text-xl">
                   <p>
-                    Passionate about creating engaging and highly interactive solutions tailored to enterprise needs.
-                    Experienced in game development and product management.
+                    Passionate about creating engaging and highly interactive games.
+                    Experienced in mobile game development, board game design, and interactive simulations.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -59,7 +219,7 @@ export default function Home() {
               <div className="flex items-center justify-center">
                 <div className="relative aspect-square overflow-hidden rounded-xl">
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Freadam_Abebe.jpg?height=600&width=600`}
+                    src={`${basePath}/Freadam_Abebe.jpg?height=600&width=600`}
                     width={600}
                     height={600}
                     alt="Freadam Abebe"
@@ -216,146 +376,67 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Professional Games Section */}
         <section id="projects" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <h2 className="mb-12 text-3xl font-bold leading-[1.1] text-center sm:text-3xl md:text-5xl">
-              Featured Projects
+            <h2 className="mb-4 text-3xl font-bold leading-[1.1] text-center sm:text-3xl md:text-5xl">
+              Professional Games
             </h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">
+              Games developed professionally at Qene Games — published on Google Play and Kinet Store.
+            </p>
+            <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {professionalGames.map((game) => (
+                <GameCard key={game.title} game={game} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Hobby & Jam Projects Section */}
+        <section className="py-12 md:py-24 lg:py-32 bg-muted/50">
+          <div className="container px-4 md:px-6">
+            <h2 className="mb-4 text-3xl font-bold leading-[1.1] text-center sm:text-3xl md:text-5xl">
+              Hobby &amp; Jam Projects
+            </h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">
+              Personal experiments, game jams, and passion projects.
+            </p>
+            <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {hobbyGames.map((game) => (
+                <GameCard key={game.title} game={game} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Board Game Design Section */}
+        <section id="boardgames" className="py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="mb-4 text-3xl font-bold leading-[1.1] text-center sm:text-3xl md:text-5xl">
+              Board Game Design
+            </h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">
+              Analog game designs exploring new mechanics and social play.
+            </p>
             <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
-              <Card className="overflow-hidden">
-                <div className="aspect-video w-full overflow-hidden">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/-3J6HCTuZH0`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen>
-                  </iframe>
-                </div>
-                <CardHeader>
-                  <CardTitle>Mancala Adventures</CardTitle>
-                  <CardDescription>Mobile Game</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    A mobile game based on the traditional African board game Mancala, featuring modern gameplay
-                    mechanics and vibrant visuals.
-                  </p>
-                  <div className="mt-4">
-                    <Link
-                      href="https://play.google.com/store/apps/details?id=com.qenegames.gebeta&hl=en"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-primary hover:underline"
-                    >
-                      <ExternalLink className="mr-1 h-4 w-4" />
-                      View on Google Play
-                    </Link>
+              {boardGames.map((game) => (
+                <Card key={game.title} className="overflow-hidden">
+                  <div className="aspect-video w-full bg-muted flex items-center justify-center">
+                    <Dice5 className="h-16 w-16 text-muted-foreground/30" />
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/dama.jpg?height=400&width=600`}
-                    width={600}
-                    height={400}
-                    alt="Dama Negest"
-                    className="object-cover transition-all hover:scale-105"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle>Dama Negest, Silet, Tras</CardTitle>
-                  <CardDescription>Traditional Ethiopian Games</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    A collection of traditional Ethiopian games reimagined for modern mobile platforms, preserving
-                    cultural heritage through interactive gameplay.
-                  </p>
-                  <div className="mt-4">
-                    <Link
-                      href="https://kinet.store/games"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-primary hover:underline"
-                    >
-                      <ExternalLink className="mr-1 h-4 w-4" />
-                      View Games
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/arif.png?height=400&width=600`}
-                    width={600}
-                    height={400}
-                    alt="Educational Platform"
-                    className="object-cover transition-all hover:scale-105"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle>Educational Platform</CardTitle>
-                  <CardDescription>Web Application</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    A subscription-based educational website developed for Xerox Trading PLC, providing digital learning
-                    resources.
-                  </p>
-                  <div className="mt-4">
-                    <Link
-                      href="http://arif.et/subscribe.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-primary hover:underline"
-                    >
-                      <ExternalLink className="mr-1 h-4 w-4" />
-                      Visit Website
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden">
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/sefed.png?height=400&width=600`}
-                    width={600}
-                    height={400}
-                    alt="Sefed EMR"
-                    className="object-cover transition-all hover:scale-105"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle>Sefed EMR</CardTitle>
-                  <CardDescription>Electronic Medical Record System</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Contributed to the development of an Electronic Medical Record system that helps medical
-                    institutions transition from paper to digital records.
-                  </p>
-                  <div className="mt-4">
-                    <Link
-                      href="https://sefedsystems.com/sefed-electronic-medical-record/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-sm text-primary hover:underline"
-                    >
-                      <ExternalLink className="mr-1 h-4 w-4" />
-                      Learn More
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Dice5 className="h-5 w-5 text-primary/70" />
+                      {game.title}
+                    </CardTitle>
+                    <CardDescription>Tabletop Game</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{game.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -364,9 +445,25 @@ export default function Home() {
         <section id="skills" className="py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6">
             <h2 className="mb-12 text-3xl font-bold leading-[1.1] text-center sm:text-3xl md:text-5xl">
-              Skills & Expertise
+              Skills &amp; Expertise
             </h2>
             <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Game Development</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary">Unity</Badge>
+                    <Badge variant="secondary">Godot</Badge>
+                    <Badge variant="secondary">Game Design</Badge>
+                    <Badge variant="secondary">Board Game Design</Badge>
+                    <Badge variant="secondary">Mobile Games</Badge>
+                    <Badge variant="secondary">AI Systems</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card>
                 <CardHeader>
                   <CardTitle>Project Management</CardTitle>
@@ -377,22 +474,7 @@ export default function Home() {
                     <Badge variant="secondary">Team Leadership</Badge>
                     <Badge variant="secondary">Project Documentation</Badge>
                     <Badge variant="secondary">Client Communication</Badge>
-                    <Badge variant="secondary">Risk Management</Badge>
                     <Badge variant="secondary">Agile Methodologies</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Software Development</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Desktop Application Development</Badge>
-                    <Badge variant="secondary">Unity Game Development</Badge>
-                    <Badge variant="secondary">Godot Game Development</Badge>
-                    <Badge variant="secondary">Web Technologies</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -423,6 +505,7 @@ export default function Home() {
                     <Badge variant="secondary">Python</Badge>
                     <Badge variant="secondary">JavaScript</Badge>
                     <Badge variant="secondary">C++</Badge>
+                    <Badge variant="secondary">GDScript</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -536,4 +619,3 @@ export default function Home() {
     </div>
   )
 }
-

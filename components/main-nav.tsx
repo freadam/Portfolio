@@ -33,11 +33,17 @@ export function MainNav() {
         <Link href="#projects" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Projects
         </Link>
+        <Link href="#boardgames" className="px-3 py-2 text-sm font-medium hover:text-primary">
+          Board Games
+        </Link>
         <Link href="#skills" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Skills
         </Link>
         <Link href="#contact" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Contact
+        </Link>
+        <Link href="/blog" className="px-3 py-2 text-sm font-medium hover:text-primary">
+          Blog
         </Link>
         <ResumeButton />
       </div>
@@ -53,11 +59,17 @@ export function MainNav() {
         <Link href="#projects" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Projects
         </Link>
+        <Link href="#boardgames" className="px-3 py-2 text-sm font-medium hover:text-primary">
+          Board Games
+        </Link>
         <Link href="#skills" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Skills
         </Link>
         <Link href="#contact" className="px-3 py-2 text-sm font-medium hover:text-primary">
           Contact
+        </Link>
+        <Link href="/blog" className="px-3 py-2 text-sm font-medium hover:text-primary">
+          Blog
         </Link>
         <ResumeButton />
       </nav>
