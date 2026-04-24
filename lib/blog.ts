@@ -12,6 +12,7 @@ export interface BlogPost {
   coverImage?: string
   coverVideo?: string
   content: string
+  tags?: string[]
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -34,6 +35,7 @@ export function getAllPosts(): BlogPost[] {
       excerpt: data.excerpt || '',
       coverImage: data.coverImage || undefined,
       coverVideo: data.coverVideo || undefined,
+      tags: data.tags || undefined,
       content,
     }
   })
@@ -58,6 +60,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     excerpt: data.excerpt || '',
     coverImage: data.coverImage || undefined,
     coverVideo: data.coverVideo || undefined,
+    tags: data.tags || undefined,
     content,
   }
 }

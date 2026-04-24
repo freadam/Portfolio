@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowLeft, Calendar } from "lucide-react"
 import { getAllPosts } from "@/lib/blog"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { MainNav } from "@/components/main-nav"
+import { SiteHeader } from "@/components/site-header"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
@@ -16,16 +16,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="inline-block text-sm font-bold sm:text-base md:text-lg">Freadam Abebe</span>
-            </Link>
-          </div>
-          <MainNav />
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="container py-10">
         <div className="mx-auto max-w-4xl">
@@ -92,11 +83,26 @@ export default function BlogPage() {
         </div>
       </main>
 
-      <footer className="border-t py-6">
-        <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 Freadam Abebe. All rights reserved.
+      {/* Footer */}
+      <footer className="border-t border-border py-8">
+        <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
+          <p className="text-center text-xs font-mono text-muted-foreground md:text-left">
+            © 2024 ENGINE_CORE. ALL SYSTEMS OPERATIONAL.
           </p>
+          <div className="flex items-center gap-6 text-xs font-mono tracking-widest text-muted-foreground">
+            <Link href="https://github.com/freadam" className="hover:text-primary transition-colors uppercase">
+              Github
+            </Link>
+            <Link href="#" className="hover:text-primary transition-colors uppercase">
+              LinkedIn
+            </Link>
+            <Link href="#" className="hover:text-primary transition-colors uppercase">
+              ArtStation
+            </Link>
+            <Link href="mailto:freadamabebe@gmail.com" className="hover:text-primary transition-colors uppercase">
+              Contact
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
